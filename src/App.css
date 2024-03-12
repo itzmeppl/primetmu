@@ -1,0 +1,44 @@
+main {
+  
+}
+
+nav {
+  text-align: center;
+  color: #FFDC00;
+}
+
+h1 {
+  text-align: center;
+  color: #FFDC00;
+}
+
+h3 {
+  font-family: 'Arial';
+  font-weight: bold;
+  color: #FFDC00;
+}
+
+.global-header {
+  justify-content: center;
+  color: #FFDC00;
+}
+
+p {
+  color: #FFDC00;
+}
+
+a:link {
+  color: #FFDC00;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+a:visited {
+  color: pink;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+.hide {
+    display: none;
+}
