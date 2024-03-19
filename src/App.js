@@ -5,6 +5,8 @@ import Wanted from "./components/Wanted";
 import ForSale from "./components/ForSale";
 import Services from "./components/Services";
 import Upload from "./components/Upload";
+import Login from "./components/Login";
+import Register from "./components/Register";
 import "./App.css";
 
 export default function App() {
@@ -27,25 +29,29 @@ export default function App() {
         <header>
           <h1 style={{ display: "block", margin: "auto" }}>CPS630 Project</h1>
         </header>
-        <input
-          type="button"
-          value="Upload Items"
-          className="upload-button"
-          onClick={() => {
-            window.location.href = "../Upload";
-            changePreview_button;
-          }}
-          style={{ float: "right" }}
-        ></input>
+
         <br></br>
-        <hr></hr>
+        <a href="/login">Login</a>
+        <a href="/register">Register</a>
       </div>
 
       <nav>
-        Pages:
-        <a href="/">Home</a> |<a href="/wanted">Wanted</a> |
-        <a href="/for-sale">For Sale</a> |<a href="/services">Services</a>
+        <a href="/">Home</a> |&nbsp;<a href="/wanted">Wanted</a> |&nbsp;
+        <a href="/for-sale">For Sale</a> |&nbsp;
+        <a href="/services">Services</a>
       </nav>
+      <hr></hr>
+
+      <input
+        type="button"
+        value="Upload Items"
+        className="upload-button"
+        onClick={() => {
+          window.location.href = "../Upload";
+          // changePreview_button;
+        }}
+        style={{ float: "right" }}
+      ></input>
 
       <BrowserRouter>
         <Routes>
@@ -54,6 +60,8 @@ export default function App() {
           <Route path="/for-sale" element={<ForSale />} />
           <Route path="/services" element={<Services />} />
           <Route path="/upload" element={<Upload />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />"
         </Routes>
       </BrowserRouter>
 
