@@ -24,14 +24,20 @@ function Admin() {
 
   return (
     <div>
+
       <h1>Admin Dashboard</h1>
       <table>
+        <tr>
+          <th>User Id</th>
+          <th>User Name</th>
+          <th>Actions</th>
+        </tr>
         
         {users.map(user => (
           <tr>
-            <td key={user.id}>{user.username}
-              `<button>delete</button>`
-            </td>
+            <td key={user.id}>{user._id} </td>
+            <td key={user.id}>{user.username} </td>
+            <td><button>Delete User</button></td>
           </tr>
         ))}
 
