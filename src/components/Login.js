@@ -16,7 +16,11 @@ function Login() {
     const login_pass = e.target.elements.password.value;  
     const found = users.find(user => user.username === login_user && user.password === login_pass);
     
-    if (found){
+    if(found && found.admin){
+      console.log("welcome admin");
+      window.open('./Admin');
+    }  
+    else if (found){
       console.log("SUCCESS! You've logged in!");
       window.open('/');
     }
