@@ -11,7 +11,13 @@ import "./App.css";
 
 export default function App() {
   const [preview_button, setPreview_button] = useState(true);
-
+  const [users,setUsers] = useState([]);
+  useEffect(() => {
+    fetch('http://localhost:3001/api/posts')
+    .then(response => response.json())
+    .then(data => setUsers(data));
+  }, []); 
+  
   const changePreview_button = () => {
     setPreview_button(!preview_button);
     if (preview_button) {
@@ -19,6 +25,15 @@ export default function App() {
     }
   };
 
+  const checkLoggedIn = () => {
+    const user = Cookies.get("Username");
+    const found = users.find(temp => temp.username === user);
+    if (user && found){
+      return 1;
+    }
+    return 0;
+  };
+  
   return (
     <div style={{ background: "#002D72" }}>
       <head>
@@ -31,8 +46,14 @@ export default function App() {
         </header>
 
         <br></br>
-        <a href="/login">Login</a>
-        <a href="/register">Register</a>
+        {checkLoggedIn() === 0 &&
+          (<div>
+            <a href="/login">Login</a>
+            <a href="/register">Register</a>
+          </div>)
+        }
+
+        {checkLoggedIn() === 1 && <button type="button" onClick={() => {Cookies.remove("Username"); window.location.href="./"}}>Logout</button>}
       </div>
 
       <nav>
