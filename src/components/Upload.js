@@ -4,17 +4,23 @@ import "../App.css";
 function Upload() {
   const [fields, setFields] = useState(0);
   const [isService, setService] = useState(0);
+  const [category, setCategory] = useState("");
   const [imageFile, setImageFile] = useState(null);
   const [imageUrl, setImageUrl] = useState("");
 
   const showInfo = (e) => {
     const value = e.target.value;
 
-    if (value === "Product") {
+    if (value === "Wanted") {
       setFields(1);
+      setCategory("wanted");
+    } else if (value === "For-Sale") {
+      setFields(1);
+      setCategory("sale");
     } else if (value === "Service") {
       setFields(1);
       setService(1);
+      setCategory("service");
     }
   }
 
@@ -31,7 +37,7 @@ function Upload() {
     const formData = new FormData();
     formData.append("title", e.target.elements.title.value);
     formData.append("item_type", e.target.elements.item_type.value);
-    formData.append("category", e.target.elements.category.value);
+    formData.append("category", category);
     formData.append("description", e.target.elements.description.value);
     formData.append("location", e.target.elements.location.value);
     formData.append("price", e.target.elements.price.value);
@@ -57,15 +63,20 @@ function Upload() {
         {fields === 0 && (
           <div id="group" style={{ textAlign: "center" }}>
             <h3 style={{ textAlign: "center" }}>Type of Ad: </h3>
-            <label><input name="cat" type="radio" value="Product" onClick={showInfo}></input> Product</label>
+            <label><input name="cat" type="radio" value="Wanted" onClick={showInfo}></input> Product Wanted</label>
+            <label><input name="cat" type="radio" value="For-Sale" onClick={showInfo}></input> Product For Sale</label>
             <label><input name="cat" type="radio" value="Service" onClick={showInfo}></input> Service</label>
           </div>
         )}
         {fields === 1 && isService === 0 && (
           <div id="group">
             <label>Title:<input name="title" type="text"></input></label><br></br>
-            <label>Item: <input name="item_type"></input></label><br></br>
-            <label>Category: <input name="category"></input></label><br></br>
+            <label for="item_type">Item Type</label>
+            <select id="item_type" name="item_type">
+              <option value={"textbook"}>Textbook</option>
+              <option value={"supplies"}>Supplies</option>
+              <option value={"stationary"}>Stationary</option>
+            </select><br></br>
             <label>Description: <input type="text" name="description"></input></label><br></br>
             <label>Price: <input name="price"></input></label><br></br>
             <label>Location: <input type="text" name="location" style={{ width: "25%" }}></input></label><br></br>
@@ -84,8 +95,12 @@ function Upload() {
         {fields === 1 && isService === 1 && (
           <div id="group">
             <label>Title:<input name="title" type="text"></input></label><br></br>
-            <label>Item: <input name="item_type"></input></label><br></br>
-            <label>Category: <input name="category"></input></label><br></br>
+            <label for="item_type">Item Type</label>
+            <select id="item_type" name="item_type">
+              <option value={"textbook"}>Textbook Exchanges</option>
+              <option value={"tutoring"}>Tutoring</option>
+              <option value={"group"}>Study Groups</option>
+            </select><br></br>
             <label>Description: <input type="text" name="description"></input></label><br></br>
             <label>Price: <input name="price"></input></label><br></br>
             <label>Location: <input type="text" name="location" style={{ width: "25%" }}></input></label><br></br>
