@@ -10,6 +10,15 @@ function Login() {
   }, []); 
   console.log(users);
 
+  const getLogin = () => {
+    const user = Cookies.get("Username");
+    const found = users.find(temp => temp.username === user);
+    if (user && found){
+      return 1;
+    }
+    return 0;
+  }
+  
   const handleLogin = (e) => {
     e.preventDefault();
     const login_user = e.target.elements.username.value;
@@ -32,11 +41,15 @@ function Login() {
   return (
     <div>
       <h2>Login</h2>
-      <form className="login-form" onSubmit={handleLogin}>
-        <input type="text" name="username" placeholder="username"></input>
-        <input type="password" name="password" placeholder="password"></input>
-        <button type="submit">Login</button>
-      </form>
+      {getLogin() === 0 &&
+        (<form className="login-form" onSubmit={handleLogin}>
+          <div></div>
+          <input type="text" name="username" placeholder="username"></input>
+          <input type="password" name="password" placeholder="password"></input>
+          <button type="submit">Login</button>
+        </form>)
+      }
+      {getLogin() === 1 && (<h3>Logged In!</h3>)}
     </div>
   );
 }
