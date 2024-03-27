@@ -1,16 +1,59 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "../App.css";
 
 function Services() {
+  const [ads, setAds] = useState([]);
+  const [exchanges, setExchanges] = useState([]);
+  const [tutoring, setTutoring] = useState([]);
+  const [groups, setGroups] = useState([]);
+
+  useEffect(() => {
+    fetch('http://localhost:3001/api/ads')
+      .then(response => response.json())
+      .then(data => setAds(data.filter(data => data.category === "service")));
+  }, []);
+
+  useEffect(() => {
+    setExchanges(ads.filter(ads => ads.item_type === "exchange"));
+    setTutoring(ads.filter(ads => ads.item_type === "tutoring"));
+    setGroups(ads.filter(ads => ads.item_type === "group"));
+  }, [ads]);
+
   return (
     <div>
-      <h1>Academic Services</h1>
-      <h3>Tutoring: </h3>
-      <br></br>
-      <h3>Textbook Exchanges: </h3>
-      <br></br>
-      <h3>Study Groups: </h3>
-      <br></br>
+      <div>
+        <h1>Academic Services</h1>
+        <h2>Tutoring: </h2>
+        <div className="ad-container">
+          {tutoring.map((ad, index) => (
+            <div className="ad-box" key={index}>
+              <h4>{ad.title}</h4>
+              <p>{ad.summary}</p>
+            </div>
+          ))}
+        </div>
+        <br></br>
+        <h2>Textbook Exchanges: </h2>
+        <div className="ad-container">
+          {exchanges.map((ad, index) => (
+            <div className="ad-box" key={index}>
+              <h4>{ad.title}</h4>
+              <p>{ad.summary}</p>
+            </div>
+          ))}
+        </div>
+        <br></br>
+        <h2>Study Groups: </h2>
+        <div className="ad-container">
+          {groups.map((ad, index) => (
+            <div className="ad-box" key={index}>
+              <h4>{ad.title}</h4>
+              <p>{ad.summary}</p>
+            </div>
+          ))}
+        </div>
+        <br></br>
+      </div>
     </div>
   );
 }
