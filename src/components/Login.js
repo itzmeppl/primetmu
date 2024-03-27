@@ -21,8 +21,10 @@ function Login() {
   
   const handleLogin = (e) => {
     e.preventDefault();
-    const login_user = e.target.elements.username.value;
-    const login_pass = e.target.elements.password.value;  
+    let login_user = e.target.elements.username.value;
+    login_user = login_user.trim();
+    let login_pass = e.target.elements.password.value;  
+    login_pass = login_pass.trim(); 
     const found = users.find(user => user.username === login_user && user.password === login_pass);
     
     if(found && found.admin){
@@ -31,7 +33,11 @@ function Login() {
     }  
     else if (found){
       console.log("SUCCESS! You've logged in!");
-      window.open('/');
+      const setFound = () => {Cookies.set('Username', login_user, {expires: (1 / 48)})};
+      setFound();
+      console.log(setFound);
+      window.open('./');
+      window.close();
     }
     else{
       console.log("Incorrect Username or Password!");
