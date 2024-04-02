@@ -12,7 +12,7 @@ function Register() {
       alert('You need to enter both the username and password!');
     }
     else{
-      fetch('http://localhost:3001/api/posts', {
+      fetch('http://localhost:3001/api/users', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
