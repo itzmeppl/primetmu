@@ -1,17 +1,17 @@
 nav {
   text-align: center;
-  color: #FFDC00;
+  color: #002D72;
 }
 
 h1 {
   text-align: center;
-  color: #FFDC00;
+  color: #002D72;
 }
 
 h2, h3, h4 {
   font-family: 'Arial';
   font-weight: bold;
-  color: #FFDC00;
+  color: #002D72;
 }
 
 .global-header {
@@ -20,7 +20,7 @@ h2, h3, h4 {
 }
 
 p, label {
-  color: #FFDC00;
+  color: #002D72;
 }
 
 a:link {
@@ -35,19 +35,85 @@ a:visited {
   text-decoration: none;
 }
 
+.upload-button {
+  float: right;
+  background-color: #002D72;
+  color: #FFDC00;
+}
+
+.upload-button:hover {
+  color: #002D72;
+  background-color: #FFDC00;
+}
+
 .hide {
     display: none;
 }
 
 .ad-container {
-  display: flex;
-  flex-wrap: wrap;
+  display: block;
+  box-sizing: border-box;
+  /* flex-wrap: wrap; */
 }
 
 .ad-box {
   padding: 10px;
   margin: 10px;
-  border: 2px solid yellow;
-  width: calc(33.33% - 20px);
-  background-color: rgba(0, 0, 255, 0.285);
+  border: 2px solid #002D72;
+  border-radius: 0.8rem;
+  /* width: calc(33.33% - 20px); */
+  width: calc(100% - 20px);
+  /* max-height: calc(25% - 20px); */
+  background-color: rgba(164, 164, 180, 0.5);
+  box-sizing: border-box;
+  display: flex;
+  /* flex-direction: row; */
+  /* overflow:visible; */
+  /* align-items: center; */
+}
+
+.image-container img {
+  max-width: 100%;
+  max-height: 90vh;
+}
+
+.ad-box img {
+  max-width: 220px;
+  max-height: 240px;
+  border-radius: 0.5rem;
+}
+
+.ad-page {
+  padding: 10px;
+  margin: 10px;
+}
+
+.image-container {
+  display: flexbox;
+}
+
+.ad-info {
+  flex: 1;
+  padding: 0px 50px; 
+}
+
+.ad-display {
+  display: flex;
+  padding: 50px;
+  margin: 10px;
+}
+
+.ad-list-info {
+  display: block;
+  float: right;
+  padding: 15px;
+}
+
+.ad-list-image {
+  display: block;
+  float:left;
+  /* box-sizing: border-box; */
+  /* overflow: hidden;
+  object-fit: cover;
+  object-position: center;  */
 }
