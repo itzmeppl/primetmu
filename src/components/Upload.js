@@ -25,9 +25,15 @@ function Upload() {
   }
 
   const handleFileChange = (e) => {
-    setImageFile(e.target.files[0]);
-    const url = URL.createObjectURL(e.target.files[0]);
-    setImageUrl(url);
+    console.log(e.target.files[0]);
+    if (e.target.files[0]) {
+      setImageFile(e.target.files[0]);
+      const url = URL.createObjectURL(e.target.files[0]);
+      setImageUrl(url);
+      console.log(url);
+    } else {
+      setImageUrl();
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -35,6 +41,7 @@ function Upload() {
 
     // Prepare form data
     const formData = new FormData();
+    const formKeywords = new FormData();
     formData.append("title", e.target.elements.title.value);
     formData.append("item_type", e.target.elements.item_type.value);
     formData.append("category", category);
@@ -42,12 +49,26 @@ function Upload() {
     formData.append("location", e.target.elements.location.value);
     formData.append("price", e.target.elements.price.value);
     formData.append("image_path", imageFile); // Use the same name as expected on the server side
+    formKeywords.append("title", e.target.elements.title.value);
+    formKeywords.append("keywords", e.target.elements.keywords.value);
 
     try {
       // Send form data to the server
       const response = await fetch("http://localhost:3001/api/ads", {
         method: "POST",
         body: formData,
+      });
+      const data = await response.json();
+      console.log(data);
+    } catch (error) {
+      console.error("Error:", error);
+    }
+
+    try {
+      // Send form data to the server
+      const response = await fetch("http://localhost:3001/api/keywords", {
+        method: "POST",
+        body: formKeywords,
       });
       const data = await response.json();
       console.log(data);
@@ -71,7 +92,7 @@ function Upload() {
         {fields === 1 && isService === 0 && (
           <div id="group">
             <label>Title:<input name="title" type="text"></input></label><br></br>
-            <label for="item_type">Item Type</label>
+            <label htmlFor="item_type">Item Type</label>
             <select id="item_type" name="item_type">
               <option value={"textbook"}>Textbook</option>
               <option value={"supplies"}>Supplies</option>
@@ -87,15 +108,15 @@ function Upload() {
             <br></br>
             {imageUrl && <img src={imageUrl} alt="Uploaded" style={{ maxWidth: "300px", maxHeight: "300px" }} />}
             <br></br>
-            {/* <h4 style={{ display: "block", "margin-left": "auto", "margin-right": "2px", "margin-top": "0px", "float": "left" }}>Keywords:</h4> */}
-            {/* <textarea rows="5" cols="33" style={{ "margin-right": "5%" }}></textarea> */}
+            <h3 style={{ display: "block", "margin-left": "auto", "margin-right": "2px", "margin-top": "0px", "float": "left" }}>Keywords:</h3>
+            <textarea name="keywords" rows="5" cols="33" style={{ "margin-right": "5%" }}></textarea>
             <button type="submit">Submit</button>
           </div>
         )}
         {fields === 1 && isService === 1 && (
           <div id="group">
             <label>Title:<input name="title" type="text"></input></label><br></br>
-            <label for="item_type">Item Type</label>
+            <label htmlFor="item_type">Item Type</label>
             <select id="item_type" name="item_type">
               <option value={"textbook"}>Textbook Exchanges</option>
               <option value={"tutoring"}>Tutoring</option>

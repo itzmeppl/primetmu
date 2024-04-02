@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import "../App.css";
 
 function Wanted() {
@@ -21,14 +22,21 @@ function Wanted() {
 
     return (
         <div>
-            <div>
+            <div className="ad-page">
                 <h1>Items Wanted</h1>
                 <h2>Textbooks: </h2>
                 <div className="ad-container">
                     {textbooks.map((ad, index) => (
                         <div className="ad-box" key={index}>
-                            <h4>{ad.title}</h4>
-                            <p>{ad.summary}</p>
+                            <Link to={`/wanted/${ad.item_type}/${ad.item_id}`}>
+                                <span className="ad-list-image">
+                                    <img src={`http://localhost:3001/image_upload/${ad.image_path}`} alt={ad.title}></img>
+                                </span>
+                                <div className="ad-list-info">
+                                    <h3>{ad.title} - ${ad.price}</h3>
+                                    <p>{ad.summary}</p>
+                                </div>
+                            </Link>
                         </div>
                     ))}
                 </div>
@@ -37,8 +45,15 @@ function Wanted() {
                 <div className="ad-container">
                     {supplies.map((ad, index) => (
                         <div className="ad-box" key={index}>
-                            <h4>{ad.title}</h4>
-                            <p>{ad.summary}</p>
+                            <Link to={`/wanted/${ad.item_type}/${ad.item_id}`}>
+                                <span className="ad-list-image">
+                                    <img src={`http://localhost:3001/image_upload/${ad.image_path}`} alt={ad.title}></img>
+                                </span>
+                                <div className="ad-list-info">
+                                    <h3>{ad.title} - ${ad.price}</h3>
+                                    <p>{ad.summary}</p>
+                                </div>
+                            </Link>
                         </div>
                     ))}
                 </div>
@@ -47,8 +62,15 @@ function Wanted() {
                 <div className="ad-container">
                     {stationary.map((ad, index) => (
                         <div className="ad-box" key={index}>
-                            <h4>{ad.title}</h4>
-                            <p>{ad.summary}</p>
+                            <Link to={`/wanted/${ad.item_type}/${ad.item_id}`}>
+                                <span className="ad-list-image">
+                                    <img src={`http://localhost:3001/image_upload/${ad.image_path}`} alt={ad.title}></img>
+                                </span>
+                                <div className="ad-list-info">
+                                    <h3>{ad.title} - ${ad.price}</h3>
+                                    <p>{ad.summary}</p>
+                                </div>
+                            </Link>
                         </div>
                     ))}
                 </div>

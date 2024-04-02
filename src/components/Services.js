@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import "../App.css";
 
 function Services() {
@@ -21,14 +22,18 @@ function Services() {
 
   return (
     <div>
-      <div>
+      <div className="ad-page">
         <h1>Academic Services</h1>
         <h2>Tutoring: </h2>
         <div className="ad-container">
           {tutoring.map((ad, index) => (
             <div className="ad-box" key={index}>
-              <h4>{ad.title}</h4>
-              <p>{ad.summary}</p>
+              <Link to={`/services/${ad.item_type}/${ad.item_id}`}>
+                <div className="ad-list-info">
+                  <h3>{ad.title} - ${ad.price}</h3>
+                  <p>{ad.summary}</p>
+                </div>
+              </Link>
             </div>
           ))}
         </div>
@@ -37,8 +42,12 @@ function Services() {
         <div className="ad-container">
           {exchanges.map((ad, index) => (
             <div className="ad-box" key={index}>
-              <h4>{ad.title}</h4>
-              <p>{ad.summary}</p>
+              <Link to={`/services/${ad.item_type}/${ad.item_id}`}>
+                <div className="ad-list-info">
+                  <h3>{ad.title} - ${ad.price}</h3>
+                  <p>{ad.summary}</p>
+                </div>
+              </Link>
             </div>
           ))}
         </div>
@@ -47,8 +56,12 @@ function Services() {
         <div className="ad-container">
           {groups.map((ad, index) => (
             <div className="ad-box" key={index}>
-              <h4>{ad.title}</h4>
-              <p>{ad.summary}</p>
+              <Link to={`/services/${ad.item_type}/${ad.item_id}`}>
+                <div className="ad-list-info">
+                  <h3>{ad.title} - ${ad.price}</h3>
+                  <p>{ad.summary}</p>
+                </div>
+              </Link>
             </div>
           ))}
         </div>
