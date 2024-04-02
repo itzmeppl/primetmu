@@ -59,8 +59,7 @@ function Upload() {
     }
 
     try {
-      // Send form data to the server
-      const response = await fetch("http://localhost:3001/api/searches", {
+      const response = await fetch("http://localhost:3001/api/keywords", {
         method: "POST",
         headers: {
           'Content-Type': 'application/json',
