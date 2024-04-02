@@ -23,8 +23,8 @@ const adSchema = new mongoose.Schema({
     image_path: String
 });
 const Ads = mongoose.model('Ads', adSchema);
-const searchSchema = new mongoose.Schema({ title: String, keywords: String });
-const Searches = mongoose.model('Searches', searchSchema);
+const keywordSchema = new mongoose.Schema({ title: String, keywords: String });
+const Keywords = mongoose.model('Keywords', keywordSchema);
 
 app.use(cors());
 app.use(express.json());
@@ -96,27 +96,26 @@ app.post('/api/ads', upload.single('image_path'), async (req, res) => {
     }
 });
 
-// keywords table
-app.get('/api/searches', async (req, res) => {
+// keywords
+app.get('/api/keywords', async (req, res) => {
     try {
-        const newSearch = await Searches.find();
-        res.json(newSearch);
+        const newKeywords = await Keywords.find();
+        res.json(newKeywords);
     }
     catch (err) {
         res.status(500).send(err);
     }
 });
 
-// keywords upload
-app.post('/api/searches', async (req, res) => {
+app.post('/api/keywords', async (req, res) => {
     try {
         const { title, keywords } = req.body;
 
         // add user_id & item_id
-        const newSearch = new Searches({ title, keywords });
-        await newSearch.save();
+        const newKeywords = new Keywords({ title, keywords });
+        await newKeywords.save();
 
-        res.status(201).json(newSearch); // Send JSON response for successful request
+        res.status(201).json(newKeywords); // Send JSON response for successful request
     } catch (err) {
         console.error(err);
         res.status(500).json({ error: 'Internal Server Error' }); // Send JSON error response
