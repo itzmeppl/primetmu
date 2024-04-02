@@ -25,15 +25,9 @@ function Upload() {
   }
 
   const handleFileChange = (e) => {
-    console.log(e.target.files[0]);
-    if (e.target.files[0]) {
-      setImageFile(e.target.files[0]);
-      const url = URL.createObjectURL(e.target.files[0]);
-      setImageUrl(url);
-      console.log(url);
-    } else {
-      setImageUrl();
-    }
+    setImageFile(e.target.files[0]);
+    const url = URL.createObjectURL(e.target.files[0]);
+    setImageUrl(url);
   };
 
   const handleSubmit = async (e) => {
@@ -41,16 +35,16 @@ function Upload() {
 
     // Prepare form data
     const formData = new FormData();
-    const formKeywords = new FormData();
-    formData.append("title", e.target.elements.title.value);
+    const title = e.target.elements.title.value;
+    const keywords = e.target.elements.keywords.value;
+    const newKeywords = { title, keywords };
+    formData.append("title", title);
     formData.append("item_type", e.target.elements.item_type.value);
     formData.append("category", category);
     formData.append("description", e.target.elements.description.value);
     formData.append("location", e.target.elements.location.value);
     formData.append("price", e.target.elements.price.value);
     formData.append("image_path", imageFile); // Use the same name as expected on the server side
-    formKeywords.append("title", e.target.elements.title.value);
-    formKeywords.append("keywords", e.target.elements.keywords.value);
 
     try {
       // Send form data to the server
@@ -66,9 +60,12 @@ function Upload() {
 
     try {
       // Send form data to the server
-      const response = await fetch("http://localhost:3001/api/keywords", {
+      const response = await fetch("http://localhost:3001/api/searches", {
         method: "POST",
-        body: formKeywords,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(newKeywords)
       });
       const data = await response.json();
       console.log(data);
@@ -82,7 +79,7 @@ function Upload() {
       <form id="form" onSubmit={handleSubmit}>
         <br></br>
         {fields === 0 && (
-          <div id="group" style={{ textAlign: "center" }}>
+          <div className="group" style={{ textAlign: "center" }}>
             <h3 style={{ textAlign: "center" }}>Type of Ad: </h3>
             <label><input name="cat" type="radio" value="Wanted" onClick={showInfo}></input> Product Wanted</label>
             <label><input name="cat" type="radio" value="For-Sale" onClick={showInfo}></input> Product For Sale</label>
@@ -90,7 +87,7 @@ function Upload() {
           </div>
         )}
         {fields === 1 && isService === 0 && (
-          <div id="group">
+          <div className="form-page">
             <label>Title:<input name="title" type="text"></input></label><br></br>
             <label htmlFor="item_type">Item Type</label>
             <select id="item_type" name="item_type">
@@ -114,7 +111,7 @@ function Upload() {
           </div>
         )}
         {fields === 1 && isService === 1 && (
-          <div id="group">
+          <div id="form-page">
             <label>Title:<input name="title" type="text"></input></label><br></br>
             <label htmlFor="item_type">Item Type</label>
             <select id="item_type" name="item_type">
