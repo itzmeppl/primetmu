@@ -1,4 +1,5 @@
-import React, { useState, useEffect} from "react";
+import React, { useState } from "react";
+import Cookies from 'js-cookie';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./components/Home";
 import Wanted from "./components/Wanted";
@@ -7,17 +8,12 @@ import Services from "./components/Services";
 import Upload from "./components/Upload";
 import Login from "./components/Login";
 import Register from "./components/Register";
+import Product from "./components/Product";
 import "./App.css";
 
 export default function App() {
   const [preview_button, setPreview_button] = useState(true);
-  const [users,setUsers] = useState([]);
-  useEffect(() => {
-    fetch('http://localhost:3001/api/posts')
-    .then(response => response.json())
-    .then(data => setUsers(data));
-  }, []); 
-  
+
   const changePreview_button = () => {
     setPreview_button(!preview_button);
     if (preview_button) {
@@ -27,25 +23,22 @@ export default function App() {
 
   const checkLoggedIn = () => {
     const user = Cookies.get("Username");
-    const found = users.find(temp => temp.username === user);
-    if (user && found){
+
+    if (user){
       return 1;
     }
     return 0;
-  };
-  
-  return (
-    <div style={{ background: "#002D72" }}>
-      <head>
-        <title>Site Name</title>
-      </head>
+  }
 
+  return (
+    <BrowserRouter>
       <div className="global-header">
         <header>
           <h1 style={{ display: "block", margin: "auto" }}>CPS630 Project</h1>
         </header>
 
         <br></br>
+
         {checkLoggedIn() === 0 &&
           (<div>
             <a href="/login">Login</a>
@@ -54,6 +47,7 @@ export default function App() {
         }
 
         {checkLoggedIn() === 1 && <button type="button" onClick={() => {Cookies.remove("Username"); window.location.href="./"}}>Logout</button>}
+
       </div>
 
       <nav>
@@ -69,24 +63,21 @@ export default function App() {
         className="upload-button"
         onClick={() => {
           window.location.href = "../Upload";
-          // changePreview_button;
+          //changePreview_button;
         }}
-        style={{ float: "right" }}
+        // style={{ float: "right", backgroundColor: "#002D72" }}
       ></input>
 
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/wanted" element={<Wanted />} />
-          <Route path="/for-sale" element={<ForSale />} />
-          <Route path="/services" element={<Services />} />
-          <Route path="/upload" element={<Upload />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />"
-        </Routes>
-      </BrowserRouter>
-
-      <body></body>
-    </div>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/wanted" element={<Wanted />} />
+        <Route path="/for-sale" element={<ForSale />} />
+        <Route path="/services" element={<Services />} />
+        <Route path="/upload" element={<Upload />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/:category/:type/:item_id" element={<Product />}></Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
