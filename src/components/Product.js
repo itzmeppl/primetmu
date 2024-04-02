@@ -29,6 +29,22 @@ function Product() {
                             <p>{ad.description}</p>
                             <h3>About this Item:</h3>
                             <p>{ad.summary}</p>
+                            <input
+                                type="button"
+                                value="Message Seller"
+                                className="message-button"
+                                onClick={() => {
+                                    window.location.href = "/message";
+                                }}
+                            ></input>
+                            <input
+                                type="button"
+                                value="Add to Cart"
+                                className="add-button"
+                                onClick={() => {
+                                    window.location.href = "/cart";
+                                }}
+                            ></input>
                         </div>
                     </div>
                 ))}
