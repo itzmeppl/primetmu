@@ -23,6 +23,8 @@ const adSchema = new mongoose.Schema({
     image_path: String
 });
 const Ads = mongoose.model('Ads', adSchema);
+const keywordsSchema = new mongoose.Schema({ keywords: String, title: String });
+const Keywords = mongoose.model('Keywords', keywordsSchema);
 
 app.use(cors());
 app.use(express.json());
@@ -78,15 +80,42 @@ app.get('/api/ads', async (req, res) => {
 });
 
 // ad upload
-app.post('/api/ads', upload.single('image_upload'), async (req, res) => {
+app.post('/api/ads', upload.single('image_path'), async (req, res) => {
     try {
         const { title, item_type, category, description, price, location } = req.body;
         const image_path = req.file ? req.file.path : null; // Get file path if file uploaded
 
+        // add user_id & item_id
         const newAd = new Ads({ title, item_type, category, description, price, location, image_path });
         await newAd.save();
 
         res.status(201).json(newAd); // Send JSON response for successful request
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: 'Internal Server Error' }); // Send JSON error response
+    }
+});
+
+// keywords table
+app.get('/api/keywords', async (req, res) => {
+    try {
+        const keywords = await Keywords.find();
+        res.json(keywords);
+    }
+    catch (err) {
+        res.status(500).send(err);
+    }
+});
+
+// keywords upload
+app.post('/api/keywords', async (req, res) => {
+    try {
+        const { title, keywords } = req.body;
+
+        const newKeywords = new Keywords({ title, keywords });
+        await newKeywords.save();
+
+        res.status(201).json(newKeywords); // Send JSON response for successful request
     } catch (err) {
         console.error(err);
         res.status(500).json({ error: 'Internal Server Error' }); // Send JSON error response
