@@ -24,7 +24,7 @@ export default function App() {
   const checkLoggedIn = () => {
     const user = Cookies.get("Username");
 
-    if (user){
+    if (user) {
       return 1;
     }
     return 0;
@@ -46,7 +46,7 @@ export default function App() {
           </div>)
         }
 
-        {checkLoggedIn() === 1 && <button type="button" onClick={() => {Cookies.remove("Username"); window.location.href="./"}}>Logout</button>}
+        {checkLoggedIn() === 1 && <button type="button" onClick={() => { Cookies.remove("Username"); window.location.href = "./" }}>Logout</button>}
 
       </div>
 
@@ -62,10 +62,9 @@ export default function App() {
         value="Upload Items"
         className="upload-button"
         onClick={() => {
-          window.location.href = "../Upload";
+          window.location.href = "/upload";
           //changePreview_button;
         }}
-        // style={{ float: "right", backgroundColor: "#002D72" }}
       ></input>
 
       <Routes>
