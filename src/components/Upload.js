@@ -35,10 +35,7 @@ function Upload() {
 
     // Prepare form data
     const formData = new FormData();
-    const title = e.target.elements.title.value;
-    const keywords = e.target.elements.keywords.value;
-    const newKeywords = { title, keywords };
-    formData.append("title", title);
+    formData.append("title", e.target.elements.title.value);
     formData.append("item_type", e.target.elements.item_type.value);
     formData.append("category", category);
     formData.append("description", e.target.elements.description.value);
@@ -57,20 +54,6 @@ function Upload() {
     } catch (error) {
       console.error("Error:", error);
     }
-
-    try {
-      const response = await fetch("http://localhost:3001/api/keywords", {
-        method: "POST",
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(newKeywords)
-      });
-      const data = await response.json();
-      console.log(data);
-    } catch (error) {
-      console.error("Error:", error);
-    }
   };
 
   return (
@@ -78,7 +61,7 @@ function Upload() {
       <form id="form" onSubmit={handleSubmit}>
         <br></br>
         {fields === 0 && (
-          <div className="group" style={{ textAlign: "center" }}>
+          <div id="group" style={{ textAlign: "center" }}>
             <h3 style={{ textAlign: "center" }}>Type of Ad: </h3>
             <label><input name="cat" type="radio" value="Wanted" onClick={showInfo}></input> Product Wanted</label>
             <label><input name="cat" type="radio" value="For-Sale" onClick={showInfo}></input> Product For Sale</label>
@@ -86,9 +69,9 @@ function Upload() {
           </div>
         )}
         {fields === 1 && isService === 0 && (
-          <div className="form-page">
+          <div id="group">
             <label>Title:<input name="title" type="text"></input></label><br></br>
-            <label htmlFor="item_type">Item Type</label>
+            <label for="item_type">Item Type</label>
             <select id="item_type" name="item_type">
               <option value={"textbook"}>Textbook</option>
               <option value={"supplies"}>Supplies</option>
@@ -104,15 +87,15 @@ function Upload() {
             <br></br>
             {imageUrl && <img src={imageUrl} alt="Uploaded" style={{ maxWidth: "300px", maxHeight: "300px" }} />}
             <br></br>
-            <h3 style={{ display: "block", "margin-left": "auto", "margin-right": "2px", "margin-top": "0px", "float": "left" }}>Keywords:</h3>
-            <textarea name="keywords" rows="5" cols="33" style={{ "margin-right": "5%" }}></textarea>
+            {/* <h4 style={{ display: "block", "margin-left": "auto", "margin-right": "2px", "margin-top": "0px", "float": "left" }}>Keywords:</h4> */}
+            {/* <textarea rows="5" cols="33" style={{ "margin-right": "5%" }}></textarea> */}
             <button type="submit">Submit</button>
           </div>
         )}
         {fields === 1 && isService === 1 && (
-          <div id="form-page">
+          <div id="group">
             <label>Title:<input name="title" type="text"></input></label><br></br>
-            <label htmlFor="item_type">Item Type</label>
+            <label for="item_type">Item Type</label>
             <select id="item_type" name="item_type">
               <option value={"textbook"}>Textbook Exchanges</option>
               <option value={"tutoring"}>Tutoring</option>
