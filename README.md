@@ -1,6 +1,6 @@
 # primetmu
 
-npm install cors express react-router-dom mongoose multer
+npm install cors express react-router-dom mongoose multer bcrypt
 
 npm start
 
