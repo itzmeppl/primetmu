@@ -1,7 +1,9 @@
 import React, { useState } from "react";
+import Cookies from "js-cookie";
 import "../App.css";
 
 function Upload() {
+  const username = Cookies.get('Username');
   const [fields, setFields] = useState(0);
   const [isService, setService] = useState(0);
   const [category, setCategory] = useState("");
@@ -39,6 +41,7 @@ function Upload() {
     const keywords = e.target.elements.keywords.value;
     const newKeywords = { title, keywords };
     formData.append("title", title);
+    formData.append("username", username);
     formData.append("item_type", e.target.elements.item_type.value);
     formData.append("category", category);
     formData.append("description", e.target.elements.description.value);
@@ -54,7 +57,9 @@ function Upload() {
       });
       const data = await response.json();
       console.log(data);
+      alert("Upload Successful!");
     } catch (error) {
+      alert("Upload Failed!");
       console.error("Error:", error);
     }
 
@@ -78,50 +83,106 @@ function Upload() {
       <form id="form" onSubmit={handleSubmit}>
         <br></br>
         {fields === 0 && (
-          <div className="group" style={{ textAlign: "center" }}>
-            <h3 style={{ textAlign: "center" }}>Type of Ad: </h3>
-            <label><input name="cat" type="radio" value="Wanted" onClick={showInfo}></input> Product Wanted</label>
-            <label><input name="cat" type="radio" value="For-Sale" onClick={showInfo}></input> Product For Sale</label>
-            <label><input name="cat" type="radio" value="Service" onClick={showInfo}></input> Service</label>
+          <div className="ad-types-form">
+            <h2 style={{ textAlign: "center" }}>Type of Ad: </h2>
+            <label><input name="cat" type="radio" value="Wanted" onClick={showInfo}></input>Product Wanted </label>
+            <label><input name="cat" type="radio" value="For-Sale" onClick={showInfo}></input>Product For Sale </label>
+            <label><input name="cat" type="radio" value="Service" onClick={showInfo}></input>Service</label>
           </div>
         )}
         {fields === 1 && isService === 0 && (
           <div className="form-page">
-            <label>Title:<input name="title" type="text"></input></label><br></br>
-            <label htmlFor="item_type">Item Type</label>
-            <select id="item_type" name="item_type">
-              <option value={"textbook"}>Textbook</option>
-              <option value={"supplies"}>Supplies</option>
-              <option value={"stationary"}>Stationary</option>
-            </select><br></br>
-            <label>Description: <input type="text" name="description"></input></label><br></br>
-            <label>Price: <input name="price"></input></label><br></br>
-            <label>Location: <input type="text" name="location" style={{ width: "25%" }}></input></label><br></br>
-            <h3>Upload Photo:</h3>
-            <label>
-              <input type="file" name="image" onChange={handleFileChange} />
-            </label>
-            <br></br>
-            {imageUrl && <img src={imageUrl} alt="Uploaded" style={{ maxWidth: "300px", maxHeight: "300px" }} />}
-            <br></br>
-            <h3 style={{ display: "block", "margin-left": "auto", "margin-right": "2px", "margin-top": "0px", "float": "left" }}>Keywords:</h3>
-            <textarea name="keywords" rows="5" cols="33" style={{ "margin-right": "5%" }}></textarea>
-            <button type="submit">Submit</button>
+            <table>
+              <tr>
+                <th colspan="2">Upload Item</th>
+              </tr>
+              <tr>
+                <td>Title:</td>
+                <td><input name="title" type="text"></input></td>
+              </tr>
+              <tr>
+                <td>Item Type:</td>
+                <td>
+                  <select id="item_type" name="item_type">
+                    <option value="textbook">Textbook</option>
+                    <option value="supplies">Supplies</option>
+                    <option value="stationary">Stationary</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <td>Price:</td>
+                <td><input type="text" name="price"></input></td>
+              </tr>
+              <tr>
+                <td>Location:</td>
+                <td><input type="text" name="location"></input></td>
+              </tr>
+              <tr>
+                <td>Description:</td>
+                <td><textarea name="description" rows="5" cols="33"></textarea></td>
+              </tr>
+              <tr>
+                <td>Keywords:</td>
+                <td><textarea name="keywords" rows="5" cols="33"></textarea></td>
+              </tr>
+              <tr>
+                <td>Upload Photo:</td>
+                <td>
+                  <label>
+                    <input type="file" name="image" onChange={handleFileChange} />
+                  </label>
+                </td>
+                <br></br>
+                {imageUrl && <img src={imageUrl} alt="Uploaded" style={{ maxWidth: "300px", maxHeight: "300px" }} />}
+                <br></br>
+              </tr>
+              <tr>
+                <td colspan="2"><button type="submit">Submit</button></td>
+              </tr>
+            </table>
           </div>
         )}
         {fields === 1 && isService === 1 && (
-          <div id="form-page">
-            <label>Title:<input name="title" type="text"></input></label><br></br>
-            <label htmlFor="item_type">Item Type</label>
-            <select id="item_type" name="item_type">
-              <option value={"textbook"}>Textbook Exchanges</option>
-              <option value={"tutoring"}>Tutoring</option>
-              <option value={"group"}>Study Groups</option>
-            </select><br></br>
-            <label>Description: <input type="text" name="description"></input></label><br></br>
-            <label>Price: <input name="price"></input></label><br></br>
-            <label>Location: <input type="text" name="location" style={{ width: "25%" }}></input></label><br></br>
-            <button type="submit">Submit</button>
+          <div className="form-page">
+            <table>
+              <tr>
+                <th colspan="2">Upload Item</th>
+              </tr>
+              <tr>
+                <td>Title:</td>
+                <td><input name="title" type="text"></input></td>
+              </tr>
+              <tr>
+                <td>Item Type:</td>
+                <td>
+                  <select id="item_type" name="item_type">
+                    <option value="textbook">Textbook Exchanges</option>
+                    <option value="tutoring">Tutoring</option>
+                    <option value="group">Study Groups</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <td>Price:</td>
+                <td><input type="text" name="price"></input></td>
+              </tr>
+              <tr>
+                <td>Location:</td>
+                <td><input type="text" name="location"></input></td>
+              </tr>
+              <tr>
+                <td>Description:</td>
+                <td><textarea name="description" rows="5" cols="33"></textarea></td>
+              </tr>
+              <tr>
+                <td>Keywords:</td>
+                <td><textarea name="keywords" rows="5" cols="33"></textarea></td>
+              </tr>
+              <tr>
+                <td colspan="2"><button type="submit">Submit</button></td>
+              </tr>
+            </table>
           </div>
         )}
       </form>

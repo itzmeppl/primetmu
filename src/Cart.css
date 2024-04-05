@@ -1,0 +1,119 @@
+
+.ad-display-checkout {
+    display: flex;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-top: 20px;
+    width: calc(100% - 350px);
+  }
+  
+  .checkout-section {
+    position: fixed;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    background-color: #f8f9fa;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 240px;
+  }
+  .image-container-checkout img {
+    max-width: 40%;
+    max-height: auto;
+    padding: 10px;
+  }
+  
+  .ad-info-checkout {
+    flex: 1;
+    padding: 0px 10px;
+  }
+  
+  .ad-info-checkout h2{
+    font-family: 'Arial';
+    font-weight: bold;
+    font-size: 18px;
+    color: #002D72;
+  }
+  
+  .checkout-section [type="button"] {
+    display: block;
+    width: 100%;
+    background-color: #002D72;
+    color: #FFDC00;
+    margin: 1%;
+    padding: 10% 10%;
+    border-radius: 0.3rem;
+  }
+  
+  
+  
+  
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .payment-container {
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+  }
+  
+  h1 {
+    text-align: center;
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  label {
+    margin-bottom: 10px;
+  }
+  
+  input[type="text"] {
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .payment-container [type="button"] {
+    display: block;
+    width: 50%;
+    background-color: #002D72;
+    color: #FFDC00;
+    margin: 1% auto;
+    padding: 5% 5%;
+    border-radius: 0.3rem;
+  }
+  .empty-cart{
+    font-size: 30px; 
+    font-weight: bold; 
+    text-align: center;
+  }
+  
+  @media (max-width: 768px) {
+    .checkout-section {
+      position: relative;
+      top: auto;
+      right: auto;
+      transform: none;
+      width: 100%;
+      margin-top: 20px; /* Add margin at the top to separate from other content */
+    }
+    .ad-info-checkout h2{
+      font-size: 10px;
+    }
+    .ad-display-checkout {
+      width: 100%;
+    }
+  }
+  

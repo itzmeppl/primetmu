@@ -28,44 +28,44 @@ function Services() {
         <div className="ad-container">
           {tutoring.map((ad, index) => (
             <div className="ad-box" key={index}>
-              <Link to={`/services/${ad.item_type}/${ad.item_id}`}>
+              <Link to={`/services/${ad.item_type}/${ad._id}`}>
                 <div className="ad-list-info">
-                  <h3>{ad.title} - ${ad.price}</h3>
+                  <h3>{ad.title}</h3>
+                  <h2>${ad.price}</h2>
                   <p>{ad.summary}</p>
                 </div>
               </Link>
             </div>
           ))}
         </div>
-        <br></br>
         <h2>Textbook Exchanges: </h2>
         <div className="ad-container">
           {exchanges.map((ad, index) => (
             <div className="ad-box" key={index}>
-              <Link to={`/services/${ad.item_type}/${ad.item_id}`}>
+              <Link to={`/services/${ad.item_type}/${ad._id}`}>
                 <div className="ad-list-info">
-                  <h3>{ad.title} - ${ad.price}</h3>
+                  <h3>{ad.title}</h3>
+                  <h2>${ad.price}</h2>
                   <p>{ad.summary}</p>
                 </div>
               </Link>
             </div>
           ))}
         </div>
-        <br></br>
         <h2>Study Groups: </h2>
         <div className="ad-container">
           {groups.map((ad, index) => (
             <div className="ad-box" key={index}>
-              <Link to={`/services/${ad.item_type}/${ad.item_id}`}>
+              <Link to={`/services/${ad.item_type}/${ad._id}`}>
                 <div className="ad-list-info">
-                  <h3>{ad.title} - ${ad.price}</h3>
+                  <h3>{ad.title}</h3>
+                  <h2>${ad.price}</h2>
                   <p>{ad.summary}</p>
                 </div>
               </Link>
             </div>
           ))}
         </div>
-        <br></br>
       </div>
     </div>
   );

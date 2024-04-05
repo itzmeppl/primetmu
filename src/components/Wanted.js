@@ -28,53 +28,53 @@ function Wanted() {
                 <div className="ad-container">
                     {textbooks.map((ad, index) => (
                         <div className="ad-box" key={index}>
-                            <Link to={`/wanted/${ad.item_type}/${ad.item_id}`}>
+                            <Link to={`/wanted/${ad.item_type}/${ad._id}`}>
                                 <span className="ad-list-image">
-                                    <img src={`http://localhost:3001/image_upload/${ad.image_path}`} alt={ad.title}></img>
+                                    <img src={`http://localhost:3001/${ad.image_path}`} alt={ad.title}></img>
                                 </span>
                                 <div className="ad-list-info">
-                                    <h3>{ad.title} - ${ad.price}</h3>
+                                    <h3>{ad.title}</h3>
+                                    <h2>${ad.price}</h2>
                                     <p>{ad.summary}</p>
                                 </div>
                             </Link>
                         </div>
                     ))}
                 </div>
-                <br></br>
                 <h2>Supplies: </h2>
                 <div className="ad-container">
                     {supplies.map((ad, index) => (
                         <div className="ad-box" key={index}>
-                            <Link to={`/wanted/${ad.item_type}/${ad.item_id}`}>
+                            <Link to={`/wanted/${ad.item_type}/${ad._id}`}>
                                 <span className="ad-list-image">
-                                    <img src={`http://localhost:3001/image_upload/${ad.image_path}`} alt={ad.title}></img>
+                                    <img src={`http://localhost:3001/${ad.image_path}`} alt={ad.title}></img>
                                 </span>
                                 <div className="ad-list-info">
-                                    <h3>{ad.title} - ${ad.price}</h3>
+                                    <h3>{ad.title}</h3>
+                                    <h2>${ad.price}</h2>
                                     <p>{ad.summary}</p>
                                 </div>
                             </Link>
                         </div>
                     ))}
                 </div>
-                <br></br>
                 <h2>Stationary: </h2>
                 <div className="ad-container">
                     {stationary.map((ad, index) => (
                         <div className="ad-box" key={index}>
-                            <Link to={`/wanted/${ad.item_type}/${ad.item_id}`}>
+                            <Link to={`/wanted/${ad.item_type}/${ad._id}`}>
                                 <span className="ad-list-image">
-                                    <img src={`http://localhost:3001/image_upload/${ad.image_path}`} alt={ad.title}></img>
+                                    <img src={`http://localhost:3001/${ad.image_path}`} alt={ad.title}></img>
                                 </span>
                                 <div className="ad-list-info">
-                                    <h3>{ad.title} - ${ad.price}</h3>
+                                    <h3>{ad.title}</h3>
+                                    <h2>${ad.price}</h2>
                                     <p>{ad.summary}</p>
                                 </div>
                             </Link>
                         </div>
                     ))}
                 </div>
-                <br></br>
             </div>
         </div>
     );

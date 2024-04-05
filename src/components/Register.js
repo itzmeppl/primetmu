@@ -40,11 +40,11 @@ function Register() {
   };
 
   return (
-    <div>
+    <div className="register-form">
       <h2>Create an account</h2>
-      <form className="register-form" onSubmit={handleSignUp}>
-        <input type="text" name="username" placeholder="username"></input>
-        <input type="password" name="password" placeholder="password"></input>
+      <form onSubmit={handleSignUp}>
+        <input type="text" name="username" placeholder="Enter Username"></input>
+        <input type="password" name="password" placeholder="Enter Password"></input>
         <button type="submit">Sign Up</button>
       </form>
 
