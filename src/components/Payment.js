@@ -93,9 +93,8 @@ function Payment() {
                     className="add-button"
                     onClick={() => {
                         deleteAds();
-                        //window.location.href = "/";
                         alert('Thank you for your purchase!');
-                        
+                        window.location.href = "/";
               }}
            ></input>
             </form>
