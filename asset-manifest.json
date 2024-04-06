@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/primetmu/static/css/main.4e4e482c.css",
-    "main.js": "/primetmu/static/js/main.53b210e2.js",
+    "main.js": "/primetmu/static/js/main.aaa492e8.js",
     "static/js/453.37b804ba.chunk.js": "/primetmu/static/js/453.37b804ba.chunk.js",
     "index.html": "/primetmu/index.html",
     "main.4e4e482c.css.map": "/primetmu/static/css/main.4e4e482c.css.map",
-    "main.53b210e2.js.map": "/primetmu/static/js/main.53b210e2.js.map",
+    "main.aaa492e8.js.map": "/primetmu/static/js/main.aaa492e8.js.map",
     "453.37b804ba.chunk.js.map": "/primetmu/static/js/453.37b804ba.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.4e4e482c.css",
-    "static/js/main.53b210e2.js"
+    "static/js/main.aaa492e8.js"
   ]
 }
