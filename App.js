@@ -8,6 +8,7 @@ import Services from "./components/Services";
 import Upload from "./components/Upload";
 import Login from "./components/Login";
 import Register from "./components/Register";
+require('dotenv').config();
 import "./App.css";
 
 export default function App() {

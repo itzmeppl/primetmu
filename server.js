@@ -6,9 +6,13 @@ const path = require('path');
 const bcrypt = require('bcrypt');
 const http = require("http");
 const { Server } = require("socket.io");
+require('dotenv').config();
 const app = express();
 const PORT = process.env.PORT || 3001;
+const primeTMUMongoDB = process.env.MONGODB_URI;
 const server = http.createServer(app)
+
+
 const saltRounds = 10; // Number of salt rounds for bcrypt
 
 const io = new Server(server, {
@@ -18,7 +22,7 @@ const io = new Server(server, {
     },
 });
 
-mongoose.connect('mongodb://localhost:27017/primetmu', { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(primeTMUMongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
 
 const userSchema = new mongoose.Schema({ username: String, password: String, admin: Boolean, rooms: Array });
 const User = mongoose.model('Users', userSchema);
