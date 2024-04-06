@@ -16,7 +16,7 @@ const saltRounds = 10; // Number of salt rounds for bcrypt
 
 const io = new Server(server, {
     cors: {
-        origin: "http://localhost:3000",
+        origin: "http://itzmeppl.github.io/primetmu",
         methods: ["GET", "POST"],
     },
 });
