@@ -12,7 +12,6 @@ const PORT = process.env.PORT || 3001;
 const primeTMUMongoDB = process.env.MONGODB_URI;
 const server = http.createServer(app)
 
-
 const saltRounds = 10; // Number of salt rounds for bcrypt
 
 const io = new Server(server, {
@@ -26,9 +25,6 @@ mongoose.connect(primeTMUMongoDB, { useNewUrlParser: true, useUnifiedTopology: t
 
 const userSchema = new mongoose.Schema({ username: String, password: String, admin: Boolean, rooms: Array });
 const User = mongoose.model('Users', userSchema);
-// TO DO: get info from cookies: 
-// item_id: String
-// user_id: String
 const adSchema = new mongoose.Schema({
     item_type: String,
     username: String,
@@ -179,7 +175,6 @@ app.post('/api/ads', upload.single('image_path'), async (req, res) => {
         const { title, item_type, category, description, price, location, username } = req.body;
         const image_path = req.file ? req.file.path : null; // Get file path if file uploaded
 
-        // add user_id & item_id
         const newAd = new Ads({ title, item_type, category, description, price, location, image_path, username });
         await newAd.save();
 
@@ -251,18 +246,7 @@ app.get('/api/search', async (req, res) => {
         res.json(locations);
         console.log(locations);
     }
-    // else{
-    //     const locs = await Ads.find({lo})
-    // }
 });
-
-
-/* app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
-}); */
-
-
-///////////////////////////////////////////////////////////////
 
 //add new room for curUser and otherUser
 app.post('/api/users/newRoom', async (req, res) => {
@@ -387,10 +371,6 @@ io.on("connection", (socket) => {
             console.error('Error sending message:', error);
         }
     });
-
-    // socket.on("new_room", (data) => {
-
-    // });
 });
 
 server.listen(PORT, () => {
