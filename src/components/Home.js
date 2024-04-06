@@ -21,30 +21,6 @@ function Home() {
     setChanged(1);
   }, [searchResults]);
 
-  // const updateResults = (objects) => {
-  //   console.log(searchResults);
-  //   const temp = [];
-  //   objects.forEach(object => {
-  //     if (searchResults.find((id) => id === object.item_id)){
-  //       temp.push(object.item_id);
-  //     }
-  //   });
-  //   console.log(temp);
-  //   console.log(searchResults);
-  //   if (temp.length >= 1){
-  //     setSearchResults(temp);
-  //     console.log("HI");
-  //   }
-  //   else{
-  //     const res = searchResults;
-  //     console.log(res);
-  //     objects.forEach(object => {res.push((object.item_id))})
-  //     console.log("BYE");
-  //     setSearchResults(res);
-  //   }
-  //   console.log(searchResults);
-  // }
-
   const searchAds = async (event) => {
     event.preventDefault();
     setSearchResults([]);
@@ -82,34 +58,10 @@ function Home() {
                   temp.push(record.item_id);
                 }
               })
-
-              //if (temp.length >= 1) {
               console.log("HI");
               setSearchResults(temp);
-              // }
-              // else {
-              //   console.log("HI");
-              //   records.forEach(record => { temp.push(record.item_id) });
-              //   setSearchResults(prev => [...prev, ...temp]);
-              // }
             }
           }
-
-          // if (i === 0){
-          //   response = await axios.get(`http://localhost:3001/api/search?term=${filter}+${tokens[0]}`);
-          //   const records = response.data;
-          //   const temp = [];
-          //   records.map(record => temp.push(record));
-          //   updateR(temp);
-          //   console.log(searchResults);
-          // }
-          // else{
-          //   response = await axios.get(`http://localhost:3001/api/search?term=${filter}+${tokens[i]}`);
-          //   console.log(response.data);
-          //   if (response.data){
-          //     updateResults(response.data);
-          //   }
-          // }
         }
       }
       else {
@@ -127,22 +79,6 @@ function Home() {
 
   return (
     <div>
-      {/* <table style={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-        <tbody>
-          <tr>
-            <td>
-              <select name="attribute" id="attribute"><option value="Title">Title</option><option value="Location">Location</option></select>
-            </td>
-            <td>
-              <input type="text" placeholder="Search" id="search" style={{ width: '400px' }}></input>
-            </td>
-            <td>
-              <button onclick={searchAds()} style={{border: "0px"}}><img src="https://static.vecteezy.com/system/resources/thumbnails/009/652/218/small/magnifying-glass-icon-isolated-on-white-background-search-illustration-vector.jpg" width="30px" ></img></button>
-            </td>
-          </tr>
-        </tbody>
-      </table> */}
-
       <h2>Search Items</h2>
 
       <form onSubmit={searchAds}>
