@@ -51,7 +51,9 @@ const RoomsSchema = new mongoose.Schema({
 const Msg = mongoose.model('Message', MsgSchema);
 const Rooms = mongoose.model('Rooms', RoomsSchema);
 
-app.use(cors());
+app.use(cors({
+    origin: 'https://itzmeppl.github.io/' // Allow requests from your GitHub Pages origin
+  }));
 app.use(express.json());
 app.use('/image_upload', express.static(path.join(__dirname, 'image_upload')));
 
