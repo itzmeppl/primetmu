@@ -82,15 +82,6 @@ export default function App() {
           ></input>
         </ul>
       </div>
-      {/* <input
-        type="button"
-        value="Upload Items"
-        className="upload-button"
-        onClick={() => {
-          window.location.href = "/upload";
-          //changePreview_button;
-        }}
-      ></input> */}
 
       <BrowserRouter>
         <Routes>
