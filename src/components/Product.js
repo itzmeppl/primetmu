@@ -35,7 +35,6 @@ function Product() {
         const curUser = Cookies.get("Username");
         const otherUser = ads[0].username;
         console.log("adding New Room to: ", curUser, ", ", otherUser);
-        // const room = curUser.concat(otherUser);
         fetch('http://localhost:3001/api/users/newRoom', {
             method: 'POST',
             headers: {
@@ -55,8 +54,6 @@ function Product() {
             );
 
             const data = response.data;
-
-
             if (!data || data.status === 'ZERO_RESULTS') {
                 console.log("OOPS");
             }
